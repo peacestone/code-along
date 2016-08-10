@@ -1,0 +1,20 @@
+
+
+.test {
+
+  background: green;
+
+
+
+  text-align: justify;
+  float: left;
+}
+.no {
+  width: 35%;
+  background: orange;
+  font-size: 2em;
+}
+
+body {
+  font-size: 100%;
+}
