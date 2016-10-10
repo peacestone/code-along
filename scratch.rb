@@ -1,35 +1,23 @@
-x = Artist.new("Avrohom freid")
-z = Artist.new("Mbd")
+WHERE books.series_id = 1
 
+ActiveRecord::Base.connection.execute("INSERT INTO movies(title, release_date, director, lead, in_theaters) VALUES (#{self.title}, #{self.release_date}, #{self.director}, #{self.lead}, #{self.in_theaters})")
 
-Dir.entries(path)
-Dir.glob("#{path}/*.mp3")
+def save
+  sql = <<-SQL
+  INSERT INTO movies(title, release_date, director, lead, in_theaters) VALUES (?,?,?,?,?)
+  SQL
 
-mp3 = File.join("**", "#{path}/*", ".*mp3")
- Dir.glob(mp3)
+  ActiveRecord::Base.connection.execute(sql, self.title, self.release_date, self. director, self.lead, self.in_theaters)
+end
 
- Dir["/path/**/*.mp3"]
+Movie.create do |m|
+   m.title = attributes[:title]
+   m.release_date = attributes[:release_date]
+   m.director = attributes[:director]
+   m.lead = attributes[:lead]
+   m.in_theaters = attributes[:in_theaters]
+end
 
- file.split(" - " )[1] = self.new(file.split(" - " )[1])
- artist = file.split(" - " )[0]
+rspec  --fail-fast
 
-
- def import
-   self.files.each { |f| Song.new_by_filename(f.split(" - " ))}
- end
-
-
-
- if not @@names.detect {|dt| dt == name}
-   @@names.push(name)
-
-
-
-
-   x = Artist.find_or_create_by_name("Avrohom freid")
-   z = Artist.find_or_create_by_name("Avrohom freid")
-
-
-   def self.songs
-     @@songs
-   end
+    Show.where("rating = ?", lowest_rating).take
